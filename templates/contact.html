@@ -1,0 +1,96 @@
+﻿{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ie6.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+				<h1><a href="#;" onclick="window.location = '/index'">DelliStore</a></h1>
+				<ul>
+					<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li><a href="#;" onclick="window.location = '/stock'">Stock</a></li>
+					<li class="active"><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					{% if loggedIn %}
+						<li><a href="#;" onclick="window.location = '/logout'">Logout</a></li>
+					{% else %}
+						<li><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					{% endif %}
+					<li><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+				<input type="text" name="search" placeholder="Search..">
+			</div>
+		</div>
+		<div id="content">
+			<div id="leftcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h2>Contact the <span>Silkistore!</span></h2>
+						<p>In case of any queries please choose from the list of subjects below to contact us via email. This allows us to route your concerns to the correct department and reply as quickly as possible.</p>
+						<p>You can also email us directly at <a style="color:#FFF; text-decoration:none"  href="mailto:roseline_cute2906@yahoo.com">roseline_cute2906@yahoo.com</a> to immediately get the best possible solutions and information.</p>
+<form id="contact-form" action="mailto:roseline_cute2906@yahoo.com" style="cursor:pointer">
+			 
+								<ul>
+																		
+									<li class="submit">
+						
+										<input type="submit" value="Click to Contact" /></li>
+									
+                                   <!-- This Project Has been Made For Project<br />-->
+
+
+								</ul>
+			
+					  </form>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>
+			<div id="rightcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3>The <span>Store!</span></h3>
+						<ul>
+							<li><a href="#">The History</a></li>
+							<li><a href="#">Meet The Staff</a></li>
+							<li><a href="#">Contacting Us</a></li>
+							<li><a href="#">Hours of Operation</a></li>
+						</ul>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3><span>Get it Free!</span></h3>
+						<div class="free-cake">
+							<img src="{% static 'img/img-cake-small.jpg' %}" alt="Gift" />
+							<p>Get Your <strong>FREE Gift</strong></p>
+							<a class="yellow-button" href="http://www.google.co.in/#hl=en&source=hp&biw=1599&bih=789&q=free+gift&oq=free+gift&aq=f&aqi=g10&aql=&gs_sm=e&gs_upl=1527l3750l0l9l9l0l0l0l0l536l1878l4-2.2&fp=84e9beec3c7eaa5a"><span>Get It!</span></a>
+						</div>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+</body>
+</html>

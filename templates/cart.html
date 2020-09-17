@@ -1,0 +1,221 @@
+
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/cart.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+	
+	<h1><a href="#;" onclick="window.location = '/index'">DelliStore</a></h1>
+				<ul>
+					<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li><a href="#;" onclick="window.location = '/stock'">Stock</a></li>
+					<li><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					{% if loggedIn %}
+						<li><a href="#;" onclick="window.location = '/logout'">Logout</a></li>
+					{% else %}
+						<li><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					{% endif %}
+					<li class="active"><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+		<div id="leftcol">
+		<div class="block">
+		    <div class="block-top"></div>
+		    <div class="block-content">
+		       {% if status %}
+                  <h1>{{status}}</h1>
+				      {% else %}
+				<h2>CART ({{items | length}})</h2>
+
+
+
+				{% endif %}
+				{% if user.is_authenticated%}
+				<form action="" method="POST">
+					{% csrf_token %}
+                <section class="container content-section">
+                    <!--<h2 class="section-header">CART</h2>-->
+					{% if msz %}
+					  <div class="{{cls}}">{{msz}}</div>
+					{% endif %}
+					<table>
+						<thead>
+						<tr>
+							<th><span class="cart-item cart-header cart-column">Image</span></th>
+							<th><span class="cart-item cart-header cart-column">Name</span></th>
+							<th><span class="cart-item cart-header cart-column">Price</span></th>
+							<th><span class="cart-item cart-header cart-column">Quantity</span></th>
+							<th><span class="cart-item cart-header cart-column">Action</span></th>
+
+
+						</tr>
+						</thead>
+						<tbody>
+
+
+                    <!--<div class="cart-row">
+                        <span class="cart-item cart-header cart-column">IMAGE</span>
+						<span class="cart-item cart-header cart-column">NAME</span>
+                        <span class="cart-price cart-header cart-column">PRICE</span>
+                        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                    </div>
+                    <div class="cart-items">
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Total</strong>
+                        <span class="cart-total-price">Rs0</span>
+                    </div>-->
+                    <!--<a class="purchase-button" href="" type="submit"><span>PURCHASE</span></a>-->
+                    <!--<button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>-->
+                 <div class="cart-items">
+                     <div class="cart-row">
+                         <div class="cart-item cart-column">
+				    {% for store in items %}
+
+				    <tr>
+					  <td><span><img src="/media/{{store.product.img}}" height="100" width="90" class="cart-item-image"></span></td>
+					  <td><span style="color:black; font_size:20px;" class="cart-item-title">{{store.product.name}}</span></td>
+					  <td><span style="color:black; margin-left:20px;" class="cart-price cart-column">{{store.product.price}}</span></td>
+					  <td style="margin:0px"><span style="color:black; margin-left:20px;">
+					  <input type="number" value="{{store.quantity}}" style="width:40%" class="cart-quantity-input" onclick="quantityChanged(this)" id="{{store.id}}"></span></td>
+					  <td><span><a href="" class="btn btn-primary purchase-button btn-danger" style="margin:0px; padding:4px">Remove</a></span></td>
+				    </tr>
+
+				   {% endfor %}
+                         </div>
+                     </div>
+                 </div>
+
+						</tbody>
+					</table>
+					<div class="cart-total">
+                        <strong class="cart-total-title">Total:</strong>
+                        <span id="item-total">Rs: </span>
+                    </div>
+					<button class="btn btn-primary purchase-button btn-purchase" type="button" >
+						<a href="#;" onclick="window.location = '/purchase'" style="text-decoration:none; color:white;">PURCHASE</a></button>
+					<button class="btn btn-primary btn-purchase-button" type="button" style="margin-left:70px;" ><a href="#;" onclick="window.location = '/stock'" style="text-decoration:none; color:white;">BACK</a></button>
+				</section>
+			</form>
+
+		</div>
+			<div class="block-bottom"></div>
+		</div>
+		</div>
+			<!--<div id="rightcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3><span>Checkout</span></h3>
+						<p class="ramit">
+						<table>
+						<tr>
+							<td>Item Total</td>
+							<td id="item_total"></td>
+
+						</tr>
+						<tr>
+							<td>Quantity</td>
+							<td id="quantity"></td>
+
+						</tr>
+						<tr>
+							<td>You Saved</td>
+							<td id="offer"></td>
+
+						</tr>
+						<tr>
+							<td>Delivery</td>
+							<td id="Free"></td>
+
+						</tr>
+						<tr style="border-top:2px solid dotted">
+							<td>Grand Total</td>
+							<td id="grand_total"></td>
+						</tr>
+
+					</table>
+
+						</p>
+
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>-->
+
+		</div>
+		<script>
+
+                        $.ajax({
+                           url:"{% url 'get_cart_data' %}",
+                           type:'get',
+                           success:function(data){
+                           //total = total + (price * quantity);
+                               console.log(data.total);
+                               //document.getElementById("item-total").innerText = "Rs: "+data.total;
+                              $("#item-total").html("Rs:"+data.total);
+
+                           }
+                        })
+                        function change_quan(id,action){
+                             let old = $("#"+id).val();
+                             quan = 0
+                             if(action=="plus"){
+
+                             quan += parseInt(old)+1
+                             }
+                             else{
+                               quan += parseInt(old)-1
+                             }
+                             $("#"+id).val(quan);
+
+                             /*$.ajax({
+                                url:"{% url 'change_quan' %}",
+                                type:"get",
+
+                                data:{cid:id, quantity:quan},
+                                success:function(data){
+                                    cart-total();
+                                    console.log('quantity');
+
+                                }
+
+                             })*/
+
+                        }
+
+
+
+
+				</script>
+		{% endif%}
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+		</div>
+		<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+
+		</body>
+
+
+		</html>

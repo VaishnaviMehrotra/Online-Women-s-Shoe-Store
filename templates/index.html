@@ -1,0 +1,101 @@
+﻿{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ie6.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+
+	<!--<script type="text/javascript">
+		var user = '{{request.user}}'
+
+		function getToken(name){
+		   var cookieValue = null;
+		   if(document.cookie && document.cookie !==''){
+		      var cookies = document.cookie.split(';');
+		      for(var i=0; i< cookies.length; i++){
+		         var cookie = cookies[i].trim();
+		         //Does this cookie  string begin with the name we want?
+		         if(cookie.substring(0, name.length +1)===(name + '=')){
+		           cookieValue = decodeURIComponent(cookie.substring(name.length +1));
+		           break;
+		          }
+		       }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken');
+
+	</script>-->
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+				<h1><a href="#;" onclick="window.location = '/index'">DelliStore</a></h1>
+				
+				<ul>
+					<li class="active"><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li><a href="#;" onclick="window.location = '/stock'">Stock</a></li>
+					<li><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					{% if loggedIn %}
+						<li><a href="#;" onclick="window.location = '/logout'">Logout</a></li>
+					{% else %}
+						<li><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					{% endif %}
+					<li><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+				<input type="text" name="search" placeholder="Search..">
+			</div>
+		</div>
+		<div id="content">
+			<div id="leftcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h2>Welcome to the <span>Silkistore!</span></h2>
+							<p>
+								<img class="cake" src="{% static 'img/mainpage.png' %}" alt="Cake" />
+								<strong style="font-size:15px;">Silkistore- the rendezvous for specific shopping needs of beautiful women.</strong><br />Silkistore features all the timeless classics a woman loves.<br />
+                                 It proves to be your one-stop shop for stylish, trendy classic women's footwear from India.<br />
+								We bring you an outstanding quality with a mixture of trend and style. Browse our online shopping store for full selection of Indian handmade footwear,sandals,Bridal Wear, Stone Work,Home Usage, and flat Wear for all seasons that combines comfort with a sense of style.</p>
+						<a class="yellow-button" href="#;" onclick="window.location = '/stock'"><span>Learn More</span></a>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>
+			<div id="rightcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3>Our <span>Specials!</span></h3>
+						<ul>
+							<li><a href="#;" onclick="window.location = '/stock'">Flats</a><strong><span style="text-decoration:line-through; font-size:12px">&#2352</span>&nbsp;800*</strong></li>
+							<li><a href="#;" onclick="window.location = '/boots'">Boots</a><strong><span style="text-decoration:line-through; font-size:12px">&#2352</span>&nbsp;1300*</strong></li>
+							<li><a href="#;" onclick="window.location = '/sportsShoes&Floaters'">Sports Shoes</a><strong><span style="text-decoration:line-through; font-size:12px">&#2352</span>&nbsp;2000*</strong></li>
+							<li><a href="#;" onclick="window.location = '/heels'">Heels</a><strong><span style="text-decoration:line-through; font-size:12px">&#2352</span>&nbsp;2200*</strong></li>
+                            * ranging from
+						</ul>
+						<a class="yellow-button"; href="#;" onclick="window.location = '/stock'"><span>See Menu</span></a>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+
+	
+			</div>
+		</div>
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+</body>
+</html>

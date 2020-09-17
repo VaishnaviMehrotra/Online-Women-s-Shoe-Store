@@ -1,0 +1,105 @@
+﻿{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ie6.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+				<h1><a href="#;" onclick="window.location = '/index'">DelliStore</a></h1>
+				<ul>
+					<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li class="active"><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li><a href="#;" onclick="window.location = '/stock'">Stock</a>
+					<!--<ul>
+						<li><a href="#;" onclick="window.location = '/casualShoes'">Casual Shoes</a></li>
+					    <li><a href="#;" onclick="window.location = '/heels'">Heels</a></li>
+						<li><a href="#;" onclick="window.location = '/boots'">Boots</a></li>
+						<li><a href="#;" onclick="window.location = '/sportsShoes&Floaters'">Sports Shoes & Floaters</a></li>
+					</ul>-->
+					</li>
+					<li><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					{% if loggedIn %}
+						<li><a href="#;" onclick="window.location = '/logout'">Logout</a></li>
+					{% else %}
+						<li><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					{% endif %}
+					<li><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+				<input type="text" name="search" placeholder="Search..">
+			</div>
+		</div>
+		<div id="content">
+			<div id="leftcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h2>About the <span>SilkiStore!</span></h2>
+						<p> We design, retail, wholesale, manufacture &amp; export women fashion footwear. Its old meets new, east meets west, traditional meets contemporary. Most of these footwear are designed and manufactured in-house, the rest are exclusively commissioned from craftsmen &amp; weavers across India.<br />
+						</p>
+					  <div class="clear">
+						  <div class="border-left-top">
+								<div class="border-right-top">
+									<div class="border-left-bottom">
+										<div class="border-right-bottom">
+											<img src="{% static 'img/shop.jpg' %}" alt="Interier" />
+										</div>
+									</div>
+								</div>
+						  </div>
+						</div>
+						<p> <strong>What we do ?</strong><br />Women wear footwear,fashion wear, outerwear,bridal wear,high heels, glamour wear, work wear, easy wear.</p>
+						<p> Formalwear, casual wear, daywear, leisurewear, business wear, festive wear, party wear, whatever </p>
+						<p>&nbsp;</p>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+
+
+			</div>
+			<div id="rightcol">
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3>The <span>Store!</span></h3>
+						<ul>
+							<li><a href="#">The History</a></li>
+							<li><a href="#">Meet The Staff</a></li>
+							<li><a href="#">Contacting Us</a></li>
+						</ul>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3><span>Latest:</span></h3>
+						<marquee behavior="scroll" scrollamount="2" title="latest"direction="down">
+                        <h4> <ul><li>New Arrivals<br />
+                        At Bargain Range</li><br />
+                        <li>Soon We Will Avail All Our Customers A new range of gifts with Every Purchase</li><br />
+                       <li> Bridal Wear Updated</li></ul></h4></marquee>
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+</body>
+</html>

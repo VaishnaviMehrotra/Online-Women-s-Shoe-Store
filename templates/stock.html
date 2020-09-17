@@ -1,0 +1,366 @@
+﻿{% load static %}
+{% static "img" as baseUrl %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ie6.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+<style>
+	*{margin:0;
+   padding:0;
+    box-sizing:border-box;}
+section{position:relative;
+width:100%;
+
+}
+section .navigation{position:absolute;
+left:50%;
+transform:translateX(-50%);
+z-index:100;
+display:flex;
+justify-content:center;
+align-items:center;}
+section .navigation li{
+list-style:none;
+cursor:pointer;
+margin:0 10px;
+border-radius:4px;
+background:#fff;
+padding:3px 3px 0;
+opacity:0.7;
+transition:0.5s;
+
+}
+section .navigation li:hover{
+opacity:0.7;
+}
+section .navigation li img{
+width:120px;
+transition:0.5s;
+display: block;
+}
+section .navigation li img:hover{
+width:200px;
+}
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.mySlides {display:none;}
+.display-left{float:left}
+.slider{
+display:none
+}
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 85%;
+  height: 95%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: rgb(37, 33, 33);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: rgb(143, 140, 140);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 20px 16px;
+  background-color: white;
+  color: rgb(201, 195, 195);
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 20px 16px;
+  background-color: #f3fcf3;
+  color: white;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+				<h1><a href="#;" onclick="window.location = '/index'">DelliStore</a></h1>
+				<ul>
+					<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li class="active"><a href="#;" onclick="window.location = '/stock'">Stock</a>
+					<!--<div class="dropdown-menu">
+						<a href="#;" onclick="window.location = '/casualShoes'">Casual Shoes</a>
+						<a href="#;" onclick="window.location = '/heels'">Heels</a>
+						<a href="#;" onclick="window.location = '/boots'">Boots</a>
+						<a href="#;" onclick="window.location = '/sportsShoes&Floaters'">Sports Shoes & Floaters</a>
+
+					</div>-->
+
+
+
+					</li>
+					<li><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					{% if loggedIn %}
+						<li><a href="#;" onclick="window.location = '/logout'">Logout</a></li>
+					{% else %}
+						<li><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					{% endif %}
+					<li><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+				<input type="text" name="search" placeholder="Search..">
+			</div>
+		</div>
+		<div id="content">
+			<div id="leftcol">
+				<div class="block" >
+					<div class="block-top"></div>
+					<div class="block-content shop-item">
+						<h2>What the <span>Silkistore</span> can provide!</h2>
+						<p><strong class="shop-item-title">Flats</strong>
+						{% for store in stores %}
+							<div class="clear">
+								 <p><strong style="font-size:14px;">{{store.name}}</strong><br /><br />
+							  <div class="image-left border-left-top">
+								<div class="border-right-top">
+									<div class="border-left-bottom">
+										<div class="border-right-bottom">
+
+
+											<img class="shop-item-image" src="{{store.img.url}}" onmouseover="this.src='{{ store.img1.url }}'" onmouseout="this.src='{{store.img.url }}'" >
+
+										</div>
+									</div>
+								</div>
+					          </div>
+
+                              <div class="shop-item-details">
+						       <p><strong style="font-size:15px;">Specification</strong><br /><br /> {{store.store}}<!--<strong>&times;</strong>Closure Type: Slip-On<br />
+                         <strong>&times;</strong>Shoe Width: Medium <br />
+<strong>&times;</strong>Outer Material: Synthetic<br />
+						<strong>&times;</strong>Toe Style: Open Toe<br />
+						<strong>&times;</strong>Warranty Type: No Warranty<br />
+						<strong>&times;</strong>Size: 8<br />
+<strong>&times;</strong>Colour: Pink<p></p><strong class="shop-item-price"><br />--><strong class="shop-item-price" style="font-size:18px;"><br /><br /> Price: <b class="line"></b>&nbsp;{{store.price}}</strong></p></div>
+
+						       <form action="{% url 'cart' %}" method="POST">
+							    {% csrf_token %}
+							   <input type="hidden" value="{{store.id}}" name="pid">
+                               <input type="hidden" value="1" name="qty">
+								   <button class="cart-button update-cart shop-item-button btn btn-primary" data-product="{{product__id}}" data-actions="add" href="#;"><span>Add to Cart</span></button></form><br />
+								<button  class="btn btn-primary cart-button"
+										style="margin-left:20px; border-radius:6%; margin-top:3px;"
+										onclick="displayModal(this);"><span>View</span></button>
+
+                                   <!-- The Modal -->
+                              <div class="modal">
+
+                               <!-- Modal content -->
+                                        <div class="modal-content">
+                                             <div class="modal-header">
+                                                <span class="close" onclick="closeModal(this);">&times;</span>
+												 <h2>{{store.name}}</h2>
+
+												 <!--<video id="slider" autoplay muted loop>
+                                                 <source src="Flip-Flops6.6.mp4" type="video/mp4">
+                                                  </video>-->
+                                                 <section>
+                                                 <img  src="{{store.img2.url}}" style="margin:0px auto; display: block;>
+                                                 <!--<video id="myVideo" style="width:250px; margin:50px auto; margin-top:100px; border:none; outline: none;" class="mySlides" autoplay muted loop>-->
+                                                   <!--<source src="{{store.video.url}}" type="video/mp4"></video>-->
+
+                                                  <ul class ="navigation">
+                                                     <!-- <li>
+                                                       <video style="width:120px; display: block;" class="mySlides" onclick="setMyVideo()" >
+                                                             <source src="{{store.video.url}}" type="video/mp4">
+													   </video>
+                                                        </li>-->
+                                                        <li><img src="{{store.img2.url}}" class="mySlides" onmouseover="setNewImage()" onmouseout="setOldImage()" onclick="setMyImage(this)"></li>
+                                                         <li><img src="{{store.img3.url}}" class="mySldes" onmouseover="setNewImage()" onmouseout="setOldImage()" onclick="setMyImage(this)"></li>
+                                                        <li><img src="{{store.img4.url}}" class="mySlides" onmouseover="setNewImage()" onmouseout="setOldImage()" onclick="setMyImage(this)"></li>
+                                                        <li><img src="{{store.img5.url}}" class="mySlides" onmouseover="setNewImage()" onmouseout="setOldImage()" onclick="setMyImage(this)"></li>
+                                                  </ul>
+
+												 </section>
+
+
+                                              </div>
+                                         </div>
+							   </div>
+
+
+					         </div>
+
+		                 {% endfor %}
+						
+                        
+                        
+                        <!--<div class="clear">
+							<div class="image-left border-left-top">
+								<div class="border-right-top">
+									<div class="border-left-bottom">
+										<div class="border-right-bottom">
+											<a href="flats1.html">
+											<img src="{% static 'img/22.jpg' %}" onmouseover="this.src='{% static 'img/2a.jpg' %}'" onmouseout="this.src='{% static 'img/22.jpg' %}'" ></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						<p><strong>Specification</strong><br /><br /> 
+						<strong>&times;</strong> Glam up your style with these white toe-ring flat sandal.<br />
+ <strong>&times;</strong> Personal fit thumb support style.<br />
+<strong>&times;</strong>  Sheet sole that makes it a classic light weight and safety sandal.</p>
+<p><strong>Also Available in Black,Red<br />
+     Price <b class="line">र</b>&nbsp;800</strong>				</p>
+	 <a class="cart-button" href="#;" onclick="window.location = '/cart'"><span>Cart</span></a></div>
+                        
+                        <div class="clear">
+							<div class="image-left border-left-top">
+								<div class="border-right-top">
+									<div class="border-left-bottom">
+										<div class="border-right-bottom">
+										  <img src="{% static 'img/33.jpg' %}" onmouseover="this.src='{% static 'img/3a.jpg' %}'" onmouseout="this.src='{% static 'img/33.jpg' %}'" >
+										</div>
+									</div>
+								</div>
+							</div>
+						<p><strong>Specification</strong><br /><br /> 
+						<strong>&times;</strong> Glam up your style with these pink stylish flat sandal.<br />
+ <strong>&times;</strong> Personal fit toe support,heel covered.<br />
+<strong>&times;</strong>  Sheet sole that makes it a classic light weight and safety sandal.<br />
+<strong>&times;</strong>One free gift with this item. Select your gift after order completion.</p>
+<p><strong>
+     Price <b class="line">र</b>&nbsp;950</strong>				</p><a class="cart-button" href="#;" onclick="window.location = '/cart'"><span>Cart</span></a>
+						</div>
+                        
+                        <div class="clear">
+							<div class="image-left border-left-top">
+								<div class="border-right-top">
+									<div class="border-left-bottom">
+										<div class="border-right-bottom">
+											<img src="{% static 'img/44.jpg' %}" onmouseover="this.src='{% static 'img/4a.jpg' %}'" onmouseout="this.src='{% static 'img/44.jpg' %}'" >
+										</div>
+									</div>
+								</div>
+							</div>
+						<p><strong>Specification</strong><br /><br /> 
+						<strong>&times;</strong> Glam up your style with these skin flat footwear.<br />
+<strong>&times;</strong>  Sheet sole that makes it a classic light weight and safety sandal.<br />
+<strong>&times;</strong>One free gift with this item. Select your gift after order completion.</p>
+<p><strong>Also Available in White<br />
+     Price <b class="line">र</b>&nbsp;900</strong>				</p><a class="cart-button" href="#;" onclick="window.location = '/cart'"><span>Cart</span></a>
+						</div>-->
+					</div>
+					<div class="block-bottom"></div>
+				</div>
+			</div>
+			<div id="rightcol">
+				<!--<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3>Free <span>Gifts Today</span></h3>
+						<strong> Shoe Shiner</strong>
+						<img src="{% static 'img/shine.jpg' %}" />
+						
+						
+					</div>
+					<div class="block-bottom"></div>
+				</div>-->
+				<div class="block">
+					<div class="block-top"></div>
+					<div class="block-content">
+						<h3><span>We Also Have</span></h3><br />
+						<p class="ramit">
+							<a href="#;" onclick="window.location = '/casualShoes'">Casual Shoes</a><br />
+							<a href="#;" onclick="window.location = '/heels'">Heels</a><br />
+							<a href="#;" onclick="window.location = '/boots'">Boots</a><br />
+							<a href="#;" onclick="window.location = '/sportsShoes&Floaters'">Sports Shoes & Floaters</a><br />
+
+
+                        </p>
+
+					</div>
+					<div class="block-bottom"></div>
+
+				</div>
+
+			</div>
+		</div>
+	    <script type="text/javascript">
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+
+
+
+</script>
+
+
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/viewModal.js' %}"></script>
+</body>
+</html>

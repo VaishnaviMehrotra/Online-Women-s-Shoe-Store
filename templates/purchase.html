@@ -1,0 +1,93 @@
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Silkistore</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/ie6.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}" />
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div class="background">
+
+	<h1><a href="#;" onclick="window.location = '/index'">Silkistore</a></h1>
+				<ul>
+					<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+					<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+					<li><a href="#;" onclick="window.location = '/stock'">Stock</a></li>
+					<li><a href="#;" onclick="window.location = '/contact'">Contact Us</a></li>
+					<li class="active"><a href="#;" onclick="window.location = '/login'">Account</a></li>
+					<li><a href="#;" onclick="window.location = '/cart'">Cart ({{items | length}})</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+		<div id="leftcol">
+			<div class="block">
+		    <div class="block-top"></div>
+		    <div class="block-content">
+		    <h2>Payment Form</h2>
+			<form >
+				{% csrf_token %}
+			   <!--<label for="">First Name</label>
+						  <input type="text" placeholder="Enter First Name" required>
+			    <label for="">Last Name</label>
+						  <input type="text"  placeholder="Enter Last Name" required>-->
+			    <label for="">Card Number</label>
+
+			    <input type="number"  placeholder="Valid Card Number" required>
+                <label for="">CV Code</label>
+						  <input type="number"  placeholder="CVC" required>
+			    <!--<label for="">Email</label>
+			    <input type="text"  placeholder="Enter Email" required>
+	 		    <label for="">Password</label>
+			    <input type="password"  placeholder="Enter password" required>
+			    <label for="">Re Enter Password</label>
+			    <input type="password"  placeholder="Enter password" required>-->
+		        <!--<input type="radio"  name="gender" value="male" required>
+                <label for="" id="male">Male</label>
+                <input type="radio" name="gender" value="female"required>
+				<label for="female" id="female">Female</label>-->
+				<label for="birthday">Expiration Date:</label>
+                <input type="date" id="birthday" name="birthday" required>
+				<!--<label for="country">Country</label>
+				  <select id="country" name="country" required>
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+					<option value="usa">USA</option>
+					<option value="australia">India</option>
+                    <option value="canada">Japan</option>
+                    <option value="usa">UK</option>
+	              </select>-->
+                <label for="">Amount</label>
+						  <input type="number"  placeholder="" required>
+	            <a class="login-button" href="#;" onclick="registerUser();" ><span>Process Payment</span></a>
+			    <a href="#;" onclick="window.location = '/cart'" class="registration-button"><span>Cancel</span></a>
+
+			</form>
+
+
+
+			</div>
+			<div class="block-bottom"></div>
+		</div>
+		</div>
+		</div>
+		<div id="footer">
+			<p>©2020 The Silkistore. Design by <a href="">Vaishnavi Mehrotra</a></p>
+			<ul>
+				<li><a href="#;" onclick="window.location = '/index'">Home</a></li>
+				<li><a href="#;" onclick="window.location = '/about'">About Us</a></li>
+				<li><a href="#;" onclick="window.location = '/stock'">Stock </a></li>
+				<li><a href="#;" onclick="window.location = '/contact'">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="{% static 'js/pngfix.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ui-components.js' %}"></script>
+</body>
+</html>
